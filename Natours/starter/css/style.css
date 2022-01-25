@@ -1,0 +1,163 @@
+/*
+COLORS:
+
+Light green: #7ed56f
+Medium green: #55c57a
+Dark green: #28b485
+
+*/
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-size: 16px;
+    font-weight: 400;
+    color: grey;
+    padding: 30px;
+}
+
+.header {
+    position: relative;
+    height: 95vh;
+    background-position: top;
+    background-size: cover;
+    /* background image  take to option on same property name */
+    background-image: linear-gradient(
+            to right,
+            rgba(126, 213, 111, 0.8),
+            rgba(40, 180, 133, 0.8)
+        ),
+        url("../img//hero.jpg");
+
+    /* to make any div to different shape od sharp lines or corner , start from TL > TR > BL > BR   */
+    /* Specifies a clipping path where everything inside the path is visible and everything outside is clipped out. */
+    clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+}
+
+.logo-box {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+}
+
+.logo {
+    height: 30px;
+}
+
+.primary-text > * {
+    text-transform: uppercase;
+    color: white;
+}
+
+.text-one {
+    font-size: 50px;
+    letter-spacing: 30px;
+    display: block;
+    line-height: 1.7;
+    animation-name: move-left;
+    /* animation: name duration timing-function delay iteration-count direction fill-mode; */
+    animation: move-left 2s ease-in-out 4ms 1 backwards;
+    /* to hide backface or to handle vertical position change in animation  */
+    backface-visibility: hidden;
+}
+
+@keyframes move-left {
+    0% {
+        transform: translateX(-200px) scale(0.4);
+    }
+    50% {
+        transform: translateX(10px) scale(1.1);
+    }
+    100% {
+        transform: translateX(0px) scale(1);
+    }
+}
+
+.text-two {
+    font-size: 30px;
+    font-weight: bold;
+    display: block;
+    letter-spacing: 8px;
+    animation: move-left 2s ease-in-out 4ms 1 backwards;
+    backface-visibility: hidden;
+}
+
+.text-box {
+    /* with respect to parent position   */
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    /* with respect to own position   */
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+/* link */
+
+@keyframes bottom-button {
+    0% {
+        transform: translateY(100px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.btn {
+    padding: 15px 40px;
+    background-color: white;
+    position: relative;
+    animation: bottom-button 1s ease-in backwards;
+}
+
+.link-button:link,
+.link-button:visited {
+    text-decoration: none;
+    border-radius: 100px;
+    display: inline-block;
+    margin-top: 50px;
+    color: gray;
+    /*  transition */
+    transition: all 0.5s ease-in-out;
+}
+
+.link-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0px 10px 20px white;
+}
+
+.link-button:active {
+    transform: translateY(-1px);
+    box-shadow: 0px 5px 20px white;
+}
+
+/* pseudo element */
+/* we make same element using this property */
+
+.btn::after {
+    background-color: white;
+}
+
+.link-button::after {
+    content: ""; /* this is must in pseudo element */
+    height: 100%; /* to cover full width and hight of parent element where we have applied  pseudo element*/
+    width: 100%;
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-radius: 100px;
+    z-index: -1;
+    /*  */
+    opacity: 1;
+    transition: all 0.3s ease-in-out;
+}
+
+/* when we hover then this css applied to the after element */
+.btn:hover::after {
+    transform: scaleX(1.4) scaleY(1.7);
+    opacity: 0;
+}
